@@ -45,5 +45,5 @@ runs:
       run: echo "cache='${{ steps.cache.outputs.cache-hit }}'" >> $GITHUB_OUTPUT
       shell: bash
     - name: Print Output
-      run: echo "${{ steps.install.outputs.cache != 'true' && 'Cache was not used' || 'Cache was used' }}"
+      run: echo "${{ steps.set-output.outputs.cache != 'true' && 'Cache was not used' || 'Cache was used' }}"
       shell: bash
