@@ -20,7 +20,7 @@ inputs:
 outputs:
   used-cache:
     description: "Whether the cache was used or not."
-    value: ${{ steps.install.outputs.cache }}
+    value: ${{ steps.set-output.outputs.cache }}
 runs:
   using: "composite"
   steps:
@@ -41,7 +41,8 @@ runs:
       env:
         INSTALL_SH: ${{ github.action_path }}/install.sh
     - name: Set Output
-      run: echo "cache='${{ inputs.caching }}'" >> $GITHUB_OUTPUT
+      id: set-output
+      run: echo "cache='${{ steps.cache.outputs.cache-hit }}'" >> $GITHUB_OUTPUT
       shell: bash
     - name: Print Output
       run: echo "${{ steps.install.outputs.cache && 'Cache was not used' || 'Cache was used' }}"
