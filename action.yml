@@ -37,10 +37,12 @@ runs:
       run: |
         chmod +x $INSTALL_SH
         $INSTALL_SH ${{ inputs.node-manager }}
-        echo "cache='${{ inputs.caching }}'" >> $GITHUB_OUTPUT
       shell: bash
       env:
         INSTALL_SH: ${{ github.action_path }}/install.sh
+    - name: Set Output
+      run: echo "cache='${{ inputs.caching }}'" >> $GITHUB_OUTPUT
+      shell: bash
     - name: Print Output
       run: echo "${{ steps.install.outputs.cache && 'Cache was not used' || 'Cache was used' }}"
       shell: bash
