@@ -1,5 +1,9 @@
 name: "Get & Cache Dependencies"
 description: "Cache dependencies (via npm) and cache them."
+author: "LuisFuentech"
+branding:
+  icon: "save"
+  color: "blue"
 inputs:
   caching:
     description: "Whether to cache dependencies or not."
