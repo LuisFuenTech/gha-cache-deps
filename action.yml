@@ -35,9 +35,12 @@ runs:
       id: install
       if: ${{ steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true' }}
       run: |
-        ${{ github.action_path }}/install.sh ${{ inputs.node-manager }}
+        chmod +x $INSTALL_SH
+        $INSTALL_SH ${{ inputs.node-manager }}
         echo "cache='${{ inputs.caching }}'" >> $GITHUB_OUTPUT
       shell: bash
+      env:
+        INSTALL_SH: ${{ github.action_path }}/install.sh
     - name: Print Output
       run: echo "${{ steps.install.outputs.cache && 'Cache was not used' || 'Cache was used' }}"
       shell: bash
