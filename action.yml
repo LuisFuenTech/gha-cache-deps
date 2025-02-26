@@ -36,7 +36,7 @@ runs:
       if: ${{ inputs.caching == 'true' && steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true' }}
       run: |
         chmod +x $INSTALL_SH
-        $INSTALL_SH ${{ inputs.node-manager }}
+        $INSTALL_SH ${{ inputs.node-manager }} ${{ inputs.lock-file }}
       shell: bash
       env:
         INSTALL_SH: ${{ github.action_path }}/install.sh
