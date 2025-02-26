@@ -27,10 +27,10 @@ runs:
     - name: Cache dependencies
       if: ${{ inputs.caching == 'true' }}
       id: cache
-      uses: actions/cache@v4
+      uses: actions/cache@v4.2.1
       with:
         path: node_modules
-        key: deps-node-modules-${{ hashFiles('**/${{ inputs.lock-file }}') }}
+        key: deps-node-modules-${{ hashFiles(format('**/{0}', inputs.lock-file)) }}
     - name: Install dependencies
       id: install
       if: ${{ inputs.caching == 'true' && steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true' }}
