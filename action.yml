@@ -33,7 +33,7 @@ runs:
         key: deps-node-modules-${{ hashFiles('**/${{ inputs.lock-file }}') }}
     - name: Install dependencies
       id: install
-      if: ${{ steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true' }}
+      if: ${{ inputs.caching == 'true' && steps.cache.outputs.cache-hit != 'true' || inputs.caching != 'true' }}
       run: |
         chmod +x $INSTALL_SH
         $INSTALL_SH ${{ inputs.node-manager }}
